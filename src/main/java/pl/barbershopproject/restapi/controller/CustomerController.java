@@ -3,7 +3,6 @@ package pl.barbershopproject.restapi.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.barbershopproject.restapi.model.Customer;
-import pl.barbershopproject.restapi.model.Employee;
 import pl.barbershopproject.restapi.service.CustomerService;
 
 import java.util.List;
@@ -35,7 +34,10 @@ public class CustomerController {
     }
 
     // update
-
+    @PutMapping("/{id_customer}")
+    public Customer updateCustomer(@RequestBody Customer updatedCustomer, @PathVariable Long id_customer){
+        return customerService.updateCustomer(updatedCustomer, id_customer);
+    }
     //delete
     @DeleteMapping("/{id_customer}")
     public void deleteCustomer(@PathVariable long id_customer){

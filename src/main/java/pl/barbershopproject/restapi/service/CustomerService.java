@@ -39,6 +39,16 @@ public class CustomerService {
     }
     //update
 
+    public Customer updateCustomer(Customer updatedCustomer, Long id_customer){
+        return customerRepository.findById(id_customer)
+                .map(customer -> {
+                    customer.setFirstName(updatedCustomer.getFirstName());
+                    customer.setLastName(updatedCustomer.getLastName());
+                    customer.setEmail(updatedCustomer.getEmail());
+                    customer.setPassword(updatedCustomer.getPassword());
+                    return customerRepository.save(customer);
+                } ).orElseThrow(NoSuchElementException::new);
+    }
     //delete
     public void deleteCustomer(long id_customer) {
 
