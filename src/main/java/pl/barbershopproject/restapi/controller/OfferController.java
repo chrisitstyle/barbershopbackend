@@ -34,6 +34,10 @@ public class OfferController {
         return offerService.getSingleOffer(id_offer);
     }
     // Update
+    @PutMapping("/{id_offer}")
+    public Offer updateOffer(@RequestBody Offer updatedOffer, @PathVariable Long id_offer){
+        return offerService.updateOffer(updatedOffer,id_offer);
+    }
     // Delete
     @DeleteMapping("/{id_offer}")
     public void deleteOffer(@PathVariable long id_offer){
