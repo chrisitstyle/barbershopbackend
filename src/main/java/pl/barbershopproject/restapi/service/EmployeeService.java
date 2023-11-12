@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import pl.barbershopproject.restapi.model.Customer;
 import pl.barbershopproject.restapi.model.Employee;
 import pl.barbershopproject.restapi.repository.EmployeeRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -37,7 +39,16 @@ public class EmployeeService {
     }
 
     //update
-
+    public Employee updateEmployee(Employee updatedEmployee, Long id_employee){
+        return employeeRepository.findById(id_employee)
+                .map(employee -> {
+                    employee.setFirstName(updatedEmployee.getFirstName());
+                    employee.setLastName(updatedEmployee.getLastName());
+                    employee.setEmail(updatedEmployee.getEmail());
+                    employee.setPassword(updatedEmployee.getPassword());
+                    return employeeRepository.save(employee);
+                } ).orElseThrow(NoSuchElementException::new);
+    }
 
     //delete
     public void deleteEmployee(long id_employee) {
