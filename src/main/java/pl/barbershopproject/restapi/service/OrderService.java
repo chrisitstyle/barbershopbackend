@@ -1,6 +1,7 @@
 package pl.barbershopproject.restapi.service;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pl.barbershopproject.restapi.model.Order;
@@ -15,6 +16,11 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     // create
+    public String addOrder(Order order){
+
+        orderRepository.save(order);
+        return "Zamówienie dodane";
+    }
     // read
     public List<Order> getOrders(){
 

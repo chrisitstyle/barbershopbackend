@@ -20,7 +20,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name ="id_customer")
-    @JsonIgnoreProperties({"customerOrders","idCustomer", "email", "password"}) // ignoruje relację w drugą stronę
+    @JsonIgnoreProperties({"customerOrders"/*,"idCustomer"*/, "email", "password"}) // ignoruje relację w drugą stronę
     private Customer customer;
 
 
