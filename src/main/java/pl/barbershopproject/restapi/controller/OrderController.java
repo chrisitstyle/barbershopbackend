@@ -2,10 +2,9 @@ package pl.barbershopproject.restapi.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.barbershopproject.restapi.model.Order;
 import pl.barbershopproject.restapi.service.OrderService;
 
@@ -19,6 +18,11 @@ public class OrderController {
     private final OrderService orderService;
 
     //create
+    @PostMapping("")
+    public String addOrder(@RequestBody Order order){
+        orderService.addOrder(order);
+        return "Zamówienie dodane";
+    }
     //read
     @GetMapping("")
     public List<Order> getOrders(){
