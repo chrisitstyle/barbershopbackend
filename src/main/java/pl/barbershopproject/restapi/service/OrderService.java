@@ -15,6 +15,11 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     // create
+    public String addOrder(Order order){
+
+        orderRepository.save(order);
+        return "Zamówienie dodane";
+    }
     // read
     public List<Order> getOrders(){
 
