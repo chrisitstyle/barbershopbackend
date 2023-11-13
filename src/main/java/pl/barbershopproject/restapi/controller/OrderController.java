@@ -31,7 +31,10 @@ public class OrderController {
         return orderService.gestSingleOrder(id_order);
     }
 
-
     //update
+    @PutMapping("/{id_order}")
+    public Order updateOrder(@RequestBody Order updatedOrder, @PathVariable Long id_order){
+        return orderService.updateOrder(updatedOrder,id_order);
+    }
     //delete
 }

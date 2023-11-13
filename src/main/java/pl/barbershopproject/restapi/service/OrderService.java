@@ -31,6 +31,17 @@ public class OrderService {
         return orderRepository.findById(id_order).orElseThrow(NoSuchElementException::new);
     }
     // update
+    public Order updateOrder(Order updatedOrder, Long id_order) {
+        return orderRepository.findById(id_order)
+                .map(order -> {
+                    order.setCustomer(updatedOrder.getCustomer());
+                    order.setEmployee(updatedOrder.getEmployee());
+                    order.setOffer(updatedOrder.getOffer());
+                    order.setOrderDate(updatedOrder.getOrderDate());
+                    order.setVisitDate(updatedOrder.getVisitDate());
+                    return orderRepository.save(order);
+                }).orElseThrow(NoSuchElementException::new);
+    }
     //delete
 
 }
