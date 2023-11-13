@@ -43,5 +43,10 @@ public class OrderService {
                 }).orElseThrow(NoSuchElementException::new);
     }
     //delete
+    public void deleteOrder(long id_order){
+        orderRepository.deleteById(id_order);
+        System.out.println("Order with id " + id_order + " has been deleted");
+
+    }
 
 }
